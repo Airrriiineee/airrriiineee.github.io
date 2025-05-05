@@ -1,0 +1,14 @@
+body{
+    background-color: antiquewhite;
+    padding: 20px;
+}
+.poster{
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 5px;
+
+}
+.visi{
+    font-weight: bold;
+    color: green;
+}
