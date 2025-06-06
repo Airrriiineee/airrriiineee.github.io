@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Florencia Irena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">Florencia Irena</div>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="row">              
+                <div class="header-text">
+                    <p>Front End Developer</p>
+                    <h1>Hi, I'm <span>Florencia Irena</span></h1>
+                    <h2>Here is My Personal Portfolio</h2>
+                </div>
+                <div class="profile-picture">
+                    <img src="./photo/professionalPhoto.jpg" alt="Florencia Irena Profile Picture">
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <!-- --------------about page--------------  -->
+
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="./photo/funPhoto.jpg">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>I am a Computer Science student, focused in Internet of Things (IoT) at Bina Nusantara University. 
+                        Long-life learner by taking extra classes at Dicoding Academy. Certified leadership by 
+                        Student Association of Computer Science (HIMTI) at BINUS University. Planning to develop a good career 
+                        by practicing my knowledge gained during college and also be part of the success of the company.</p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links"onclick="opentab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>UI/UX</span><br>Dessigning Web/App interface (Figma, Canva)</li>
+                            <li><span>Web Development</span><br>Web App development (HTML, CS, Javascript)</li>
+                            <li><span>App Development</span><br>Building Android/IOS Apps (Android Studio, Java)</li>
+                            <li><span>IoT Development</span><br>Building IoT Architecture (Tinkercad, Arduino IDE, C++)</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>HIMTI Binus University (2022 - present)</span><br>Ogranization at Binus for faculty School of Computer Science. 1 year served as activist and now as General Manager of Commission 2.</li>
+                            <li><span>Vairbees event PIT IAI Virtual 2022 (June 2022)</span><br>Annual scientific week organized by the Indonesian Pharmacists Association. Served as data entry, customer service, and scientific poster committee.</li>
+                            <li><span>ICORIS 2023 International Conference(October 2023)</span><br>Assigned to present a paper about mobile application entitled “Designing Women’s Safety Application for Emergency Situations”</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2021 - present</span><br>Bachelor of Computer Science in Bina Nusantara University</li>
+                            <li><span>2018 - 2020</span><br>Xaverius Bandarlampung Senior High School</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -------------------------------my service page---------------------------------- -->
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div>
+                    <h2>Web Design</h2>
+                    <p>Developing the front-end interface using HTML, CSS, Javascript. Suitable for company profile, interactive letter (birthday, wedding, etc).</p>
+                    <a href="#">learn more</a>
+                </div>
+                <div>
+                    <h2>UI/UX Design</h2>
+                    <p>Designing user interface and user experience using Figma. Suitable for web design and application design.</p>
+                    <a href="#">learn more</a>
+                </div>
+                <div>
+                    <h2>App Development</h2>
+                    <p>Developing simple application for company using Android Studio. Suitable for company application.</p>
+                    <a href="#">learn more</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+
+        }
+    </script>
+</body>
+</html>
