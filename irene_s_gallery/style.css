@@ -148,7 +148,7 @@ body {
 
 /* Responsive: di HP gambar di atas, teks di bawah */
 @media (max-width: 480px) {
-  /* .produk-card {
+  .produk-card {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -158,10 +158,15 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 4px;
-  } */
+  }
 
   .produk-gambar {
+<<<<<<< HEAD
     width: 100px;
     height: 100px;
+=======
+    width: 80%;
+    height: auto;
+>>>>>>> parent of 910d9d0 (adjust UI media)
   }
 }
