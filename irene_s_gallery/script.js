@@ -2,6 +2,7 @@ let semuaProduk = [];
 let produkDitampilkan = 0;
 const JUMLAH_PER_LOAD = 6;
 let kategoriDipilih = 'semua';
+let keywordPencarian = '';
 
 const loadingContainer = document.getElementById('loading-container');
 loadingContainer.style.display = 'flex'; // Tampilkan loading saat awal
@@ -34,6 +35,15 @@ fetch('https://script.google.com/macros/s/AKfycbz-rOULxiI7TWA0-t72SIrW33TZybPW_U
       tampilkanProduk(true);
     });
 
+    const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', () => {
+        keywordPencarian = searchInput.value.toLowerCase();
+        produkDitampilkan = 0;
+        document.getElementById('produk-container').innerHTML = '';
+        tampilkanProduk(true);
+    });
+
+
     select.value = 'semua';
     kategoriDipilih = 'semua';
 
@@ -58,6 +68,15 @@ function tampilkanProduk(reset = false) {
   if (kategoriDipilih !== 'semua') {
     produkFiltered = semuaProduk.filter(p => p.kategori === kategoriDipilih);
   }
+  
+  // Filter berdasarkan pencarian (nama produk atau deskripsi)
+  if (keywordPencarian) {
+    produkFiltered = produkFiltered.filter(p =>
+        p["Nama Produk"].toLowerCase().includes(keywordPencarian) ||
+        p.Deskripsi.toLowerCase().includes(keywordPencarian)
+    );
+  }
+
 
   const slice = produkFiltered.slice(produkDitampilkan, produkDitampilkan + JUMLAH_PER_LOAD);
 
@@ -87,7 +106,7 @@ function tampilkanProduk(reset = false) {
     document.body.appendChild(tombol);
   }
 
-  if (produkDitampilkan >= produkFiltered.length) {
+  if (keywordPencarian || produkDitampilkan >= produkFiltered.length) {
     tombol.style.display = 'none';
   } else {
     tombol.style.display = 'block';
