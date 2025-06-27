@@ -148,7 +148,7 @@ body {
 
 /* Responsive: di HP gambar di atas, teks di bawah */
 @media (max-width: 480px) {
-  .produk-card {
+  /* .produk-card {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -158,10 +158,10 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 4px;
-  }
+  } */
 
   .produk-gambar {
-    width: 80%;
+    width: 100px;
     height: auto;
   }
 }
