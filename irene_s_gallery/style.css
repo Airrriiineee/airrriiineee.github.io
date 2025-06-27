@@ -1,43 +1,32 @@
+/* Global */
 body {
-  font-family: sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   padding: 20px;
+  background-color: #f8f5f2;
+  color: #333;
 }
 
-/* Grid layout untuk web */
-/* Responsive adjustment: pada mobile grid tetap 1 kolom (minmax handle otomatis) */
-.produk-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.produk {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: transform 0.2s;
-}
-
-.produk:hover {
-  transform: translateY(-4px);
-}
-
-
-#load-more {
-  padding: 10px 20px;
+/* Dropdown */
+#kategori-select {
+  padding: 6px;
+  margin-bottom: 20px;
   font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
   border-radius: 8px;
-  cursor: pointer;
-}
-#load-more:hover {
-  background-color: #45a049;
+  border: 1px solid #ccc;
 }
 
+/* Search input (jika ada) */
+#search-input {
+  padding: 8px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* Spinner loading */
 #loading-container {
   display: flex;
   flex-direction: column;
@@ -62,11 +51,117 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-#kategori-select {
-  padding: 6px;
-  margin-bottom: 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+/* Grid layout */
+.produk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  column-gap: 20px;
+  row-gap: 50px;
+  align-items: start; /* Pastikan setiap card sejajar di atas */
+  padding-bottom: 30px;
 }
 
+/* Kartu produk */
+.produk-card {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 16px;
+  align-items: flex-start;
+  gap: 16px;
+  height: 100%;
+  border: 1px solid #ccc;
+  transition: transform 0.2s;
+  /* margin-bottom: 16px; */
+  /* padding-bottom: 16px; */
+}
+
+.produk-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Gambar */
+.produk-gambar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Info teks */
+.produk-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header: nama dan harga */
+.produk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.produk-nama {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.produk-harga {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444;
+  margin: 0;
+}
+
+.produk-kategori {
+  font-size: 14px;
+  color: #888;
+  margin: 4px 0 0 0;
+}
+
+.produk-deskripsi {
+  font-size: 14px;
+  color: #444;
+  margin: 4px 0 0 0;
+}
+
+/* Tombol load more */
+#load-more {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin: 24px auto 0;
+}
+#load-more:hover {
+  background-color: #45a049;
+}
+
+/* Responsive: di HP gambar di atas, teks di bawah */
+@media (max-width: 480px) {
+  .produk-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .produk-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .produk-gambar {
+    width: 80%;
+    height: auto;
+  }
+}

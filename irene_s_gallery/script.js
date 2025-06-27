@@ -82,14 +82,20 @@ function tampilkanProduk(reset = false) {
 
   slice.forEach(item => {
     const el = document.createElement('div');
-    el.className = 'produk';
+
+    el.className = 'produk-card';
     el.innerHTML = `
-      <img src="${item.Foto}" alt="${item["Nama Produk"]}" style="max-width: 200px;" />
-      <h3>${item["Nama Produk"]}</h3>
-      <p>Kategori: ${item.kategori}</p>
-      <p>Harga: Rp ${Number(item.Harga).toLocaleString('id-ID')}</p>
-      <p>Deskripsi: ${item.Deskripsi}</p>
+    <img src="${item.Foto}" class="produk-gambar" alt="${item['Nama Produk']}" />
+    <div class="produk-info">
+        <div class="produk-header">
+        <h3 class="produk-nama">${item['Nama Produk']}</h3>
+        <p class="produk-harga">Rp ${Number(item.Harga).toLocaleString('id-ID')}</p>
+        </div>
+        <p class="produk-kategori">${item.kategori}</p>
+        <p class="produk-deskripsi">${item.Deskripsi}</p>
+    </div>
     `;
+
     container.appendChild(el);
   });
 
