@@ -163,10 +163,14 @@ body {
   .produk-gambar {
 <<<<<<< HEAD
     width: 100px;
+<<<<<<< HEAD
     height: 100px;
 =======
     width: 80%;
     height: auto;
 >>>>>>> parent of 910d9d0 (adjust UI media)
+=======
+    height: auto;
+>>>>>>> parent of db7193c (adjust UI media)
   }
 }
