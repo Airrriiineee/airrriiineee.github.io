@@ -4,44 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Produk Kerajinan</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; }
-    .produk { border: 1px solid #ccc; border-radius: 10px; padding: 10px; margin: 10px; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Daftar Produk Kerajinan</h1>
-  <div id="produk-container">Memuat data...</div>
+  
+  <div id="loading-container">
+    <div class="spinner"></div>
+    <p>Memuat data...</p>
+  </div>
+  <label for="kategori-select">Pilih Kategori:</label>
+  <select id="kategori-select">
+    <option value="semua">Semua Kategori</option>
+  </select>
 
-  <script>
-    fetch('https://script.google.com/macros/s/AKfycbyVtCKLMBySI0Mrb1-LTUNTMo9WD1_9SXM0ajiByJsNAIzOn3AW6VgZfG3aAAga08z0Uw/exec')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('produk-container');
-        container.innerHTML = '';
-
-        data.produk.forEach(kategori => {
-          const kategoriTitle = document.createElement('h2');
-          kategoriTitle.textContent = kategori.kategori;
-          container.appendChild(kategoriTitle);
-
-          kategori.items.forEach(item => {
-            const el = document.createElement('div');
-            el.className = 'produk';
-            el.innerHTML = `
-              <img src="${item.Foto}" alt="${item["Nama Produk"]}" style="max-width: 200px;" />
-              <h3>${item["Nama Produk"]}</h3>
-              <p>Harga: Rp ${item.Harga}</p>
-              <p>Deskripsi: ${item.Deskripsi}</p>
-            `;
-            container.appendChild(el);
-          });
-        });
-      })
-      .catch(err => {
-        document.getElementById('produk-container').innerText = 'Gagal memuat data.';
-        console.error(err);
-      });
-  </script>
+  <div id="produk-container"></div>
+  <script src="script.js"></script>
 </body>
 </html>
