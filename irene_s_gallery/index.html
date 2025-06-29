@@ -1,29 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Produk Kerajinan</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Irene's Gallery</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Daftar Produk Kerajinan</h1>
-  
+  <h1>Irene's Gallery</h1>
+
+  <div class="filter-container">
+    <select id="moment-select">
+      <option value="semua">Semua Moment</option>
+    </select>
+
+    <select id="jenis-select">
+      <option value="semua">Semua Jenis</option>
+    </select>
+
+    <input type="text" id="search-input" placeholder="Cari produk..." />
+  </div>
+
   <div id="loading-container">
     <div class="spinner"></div>
     <p>Memuat data...</p>
   </div>
-  <label for="kategori-select">Pilih Kategori:</label>
-  <select id="kategori-select">
-    <option value="semua">Semua Kategori</option>
-  </select>
 
-  <input
-    type="text"
-    id="search-input"
-    placeholder="Cari produk..."
-    style="padding: 8px; width: 100%; max-width: 400px; margin-bottom: 20px; font-size: 16px;"
-  >
   <div id="produk-container" class="produk-grid"></div>
 
   <script src="script.js"></script>

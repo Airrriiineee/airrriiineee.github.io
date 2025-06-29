@@ -1,54 +1,34 @@
+
 let semuaProduk = [];
 let produkDitampilkan = 0;
 const JUMLAH_PER_LOAD = 6;
-let kategoriDipilih = 'semua';
+let momentDipilih = 'semua';
+let jenisDipilih = 'semua';
 let keywordPencarian = '';
 
 const loadingContainer = document.getElementById('loading-container');
-loadingContainer.style.display = 'flex'; // Tampilkan loading saat awal
+loadingContainer.style.display = 'flex';
 
-fetch('https://script.google.com/macros/s/AKfycbz-rOULxiI7TWA0-t72SIrW33TZybPW_UXrtv_al6ZWAkTRfbYoDUUYHJsB0S-R3WJF/exec')
+fetch('https://script.google.com/macros/s/AKfycbzXvV7HGnURPwqM-jEdkCcH7u4XBLUjnbYa-PcX9jOcfufE_g8pTKiwgS3YQplQosnR9g/exec')
   .then(res => res.json())
   .then(data => {
-    semuaProduk = data.produk.flatMap(kategori => kategori.items.map(item => ({
-      ...item,
-      kategori: kategori.kategori
-    })));
+    semuaProduk = data.produk;
 
-    // Sembunyikan loading
-    loadingContainer.style.display = 'none';
-
-    // Isi dropdown kategori dari data.kategori
-    const select = document.getElementById('kategori-select');
-    data.kategori.forEach(kat => {
+    data.kategori.moment.forEach(kat => {
       const opt = document.createElement('option');
       opt.value = kat;
       opt.textContent = kat;
-      select.appendChild(opt);
+      document.getElementById('moment-select').appendChild(opt);
     });
 
-    // Event: saat kategori berubah
-    select.addEventListener('change', () => {
-      kategoriDipilih = select.value;
-      produkDitampilkan = 0;
-      document.getElementById('produk-container').innerHTML = '';
-      tampilkanProduk(true);
+    data.kategori.jenis.forEach(kat => {
+      const opt = document.createElement('option');
+      opt.value = kat;
+      opt.textContent = kat;
+      document.getElementById('jenis-select').appendChild(opt);
     });
 
-    const searchInput = document.getElementById('search-input');
-        searchInput.addEventListener('input', () => {
-        keywordPencarian = searchInput.value.toLowerCase();
-        produkDitampilkan = 0;
-        document.getElementById('produk-container').innerHTML = '';
-        tampilkanProduk(true);
-    });
-
-
-    select.value = 'semua';
-    kategoriDipilih = 'semua';
-
-
-    // Tampilkan produk awal & tombol
+    loadingContainer.style.display = 'none';
     tampilkanProduk(true);
   })
   .catch(err => {
@@ -56,6 +36,24 @@ fetch('https://script.google.com/macros/s/AKfycbz-rOULxiI7TWA0-t72SIrW33TZybPW_U
     loadingContainer.style.display = 'none';
     console.error(err);
   });
+
+document.getElementById('moment-select').addEventListener('change', e => {
+  momentDipilih = e.target.value;
+  produkDitampilkan = 0;
+  tampilkanProduk(true);
+});
+
+document.getElementById('jenis-select').addEventListener('change', e => {
+  jenisDipilih = e.target.value;
+  produkDitampilkan = 0;
+  tampilkanProduk(true);
+});
+
+document.getElementById('search-input').addEventListener('input', e => {
+  keywordPencarian = e.target.value.toLowerCase();
+  produkDitampilkan = 0;
+  tampilkanProduk(true);
+});
 
 function tampilkanProduk(reset = false) {
   const container = document.getElementById('produk-container');
@@ -65,56 +63,51 @@ function tampilkanProduk(reset = false) {
   }
 
   let produkFiltered = semuaProduk;
-  if (kategoriDipilih !== 'semua') {
-    produkFiltered = semuaProduk.filter(p => p.kategori === kategoriDipilih);
-  }
-  
-  // Filter berdasarkan pencarian (nama produk atau deskripsi)
-  if (keywordPencarian) {
-    produkFiltered = produkFiltered.filter(p =>
-        p["Nama Produk"].toLowerCase().includes(keywordPencarian) ||
-        p.Deskripsi.toLowerCase().includes(keywordPencarian)
-    );
+
+  if (momentDipilih !== 'semua') {
+    produkFiltered = produkFiltered.filter(p => p.Moment === momentDipilih);
   }
 
+  if (jenisDipilih !== 'semua') {
+    produkFiltered = produkFiltered.filter(p => p.Jenis === jenisDipilih);
+  }
+
+  if (keywordPencarian) {
+    produkFiltered = produkFiltered.filter(p =>
+      p["Nama Produk"].toLowerCase().includes(keywordPencarian) ||
+      p.Deskripsi.toLowerCase().includes(keywordPencarian)
+    );
+  }
 
   const slice = produkFiltered.slice(produkDitampilkan, produkDitampilkan + JUMLAH_PER_LOAD);
 
   slice.forEach(item => {
     const el = document.createElement('div');
-
     el.className = 'produk-card';
     el.innerHTML = `
-    <img src="${item.Foto}" class="produk-gambar" alt="${item['Nama Produk']}" />
-    <div class="produk-info">
+      <img src="${item.Foto}" class="produk-gambar" alt="${item["Nama Produk"]}" />
+      <div class="produk-info">
         <div class="produk-header">
-        <h3 class="produk-nama">${item['Nama Produk']}</h3>
-        <p class="produk-harga">Rp ${Number(item.Harga).toLocaleString('id-ID')}</p>
+          <h3 class="produk-nama">${item["Nama Produk"]}</h3>
+          <p class="produk-harga">Rp ${Number(item.Harga).toLocaleString('id-ID')}</p>
         </div>
-        <p class="produk-kategori">${item.kategori}</p>
+        <p class="produk-kategori">${[item.Moment, item.Jenis].filter(Boolean).join(', ')}</p>
         <p class="produk-deskripsi">${item.Deskripsi}</p>
-    </div>
+      </div>
     `;
-
     container.appendChild(el);
   });
 
   produkDitampilkan += JUMLAH_PER_LOAD;
 
-  // Tampilkan atau sembunyikan tombol Load More
   let tombol = document.getElementById('load-more');
   if (!tombol) {
     tombol = document.createElement('button');
     tombol.id = 'load-more';
     tombol.textContent = 'Load More';
     tombol.onclick = () => tampilkanProduk(false);
-    tombol.style.marginTop = '20px';
     document.body.appendChild(tombol);
   }
 
-  if (keywordPencarian || produkDitampilkan >= produkFiltered.length) {
-    tombol.style.display = 'none';
-  } else {
-    tombol.style.display = 'block';
-  }
+  tombol.style.display = (produkDitampilkan >= produkFiltered.length || produkFiltered.length === 0) ? 'none' : 'block';
 }
