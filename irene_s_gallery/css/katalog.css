@@ -1,9 +1,25 @@
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  padding: 20px;
+body.katalog-page {
   background-color: #f8f5f2;
-  color: #333;
+  padding: 20px;
+}
+
+.kembali-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.kembali-button:hover {
+  text-decoration: underline;
+}
+
+.katalog-page h1 {
+  color: #5c3b2e; /* Coklat gelap, lebih hangat dari hitam pekat */
+  font-size: 2.4em;
+  margin-bottom: 20px; /* Tambah jarak ke filter */
 }
 
 .filter-container {
@@ -17,7 +33,10 @@ select, #search-input {
   padding: 8px;
   font-size: 16px;
   border-radius: 8px;
+  background-color: #fffdfc;
   border: 1px solid #ccc;
+  color: #333;
+
 }
 
 #search-input {
@@ -53,7 +72,7 @@ select, #search-input {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
-  row-gap: 50px;
+  row-gap: 30px;
   align-items: start;
   padding-bottom: 30px;
 }

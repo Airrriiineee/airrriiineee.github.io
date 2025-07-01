@@ -1,34 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Irene's Gallery</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/landing.css" />
 </head>
-<body>
-  <h1>Irene's Gallery</h1>
-
-  <div class="filter-container">
-    <select id="moment-select">
-      <option value="semua">Semua Moment</option>
-    </select>
-
-    <select id="jenis-select">
-      <option value="semua">Semua Jenis</option>
-    </select>
-
-    <input type="text" id="search-input" placeholder="Cari produk..." />
+<body class="landing-page">
+  <div class="container">
+    <h1>Irene's Gallery</h1>
+    <p class="tagline">Handmade Gifts & Art by Florencia Irena</p>
+    <hr />
+    <p class="info-line">📦 Gift Box &nbsp; | &nbsp; 🎨 Kokoru Art &nbsp; | &nbsp; 🖌️ Custom Craft</p>
+    <p class="info-line">🌸 Kreasi tangan yang penuh makna dan cinta 🌸</p>
+    <p class="info-line">✉️ <a href="mailto:irenesgallery01@gmail.com">irenesgallery01@gmail.com</a></p>
+    <p class="info-line">📷 <a href="https://instagram.com/irene_s_gallery" target="_blank">@irene_s_gallery</a></p>
+    <p class="info-line">📍 Bandung, Indonesia</p>
+    <a href="katalog.html" class="button-link">Lihat Katalog Produk</a>
+    <!-- <div class="coming-soon">
+      <p>[COMING SOON]</p>
+      <p>Koleksi terbaru & toko online segera hadir</p>
+    </div> -->
   </div>
-
-  <div id="loading-container">
-    <div class="spinner"></div>
-    <p>Memuat data...</p>
-  </div>
-
-  <div id="produk-container" class="produk-grid"></div>
-
-  <script src="script.js"></script>
 </body>
 </html>
